@@ -1,0 +1,30 @@
+input {
+	margin-top: .25rem;
+}
+
+.bookShelf {
+	margin-top: 2rem;
+	width: 80%;
+	height: 15rem;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 2rem;
+}
+
+.input {
+	display: flex;
+	flex-direction: column;
+	width: 15rem;
+}
+
+.checkbox {
+	margin: .5rem auto;
+	text-align: center;
+}
+
+.bookBinding {
+	border: 1px solid black;
+	width: 10rem;
+	/* writing-mode: vertical-rl;
+	text-orientation: upright; */
+}
