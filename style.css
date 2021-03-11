@@ -2,6 +2,10 @@ input {
 	margin-top: .25rem;
 }
 
+.hidden {
+	visibility: hidden;
+}
+
 .bookShelf {
 	margin-top: 2rem;
 	width: 80%;
