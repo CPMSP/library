@@ -3,7 +3,7 @@ const bookShelf = document.querySelector('.bookShelf');
 const inputContainer = document.querySelector('.addBookContainer');
 const newBookButton = document.querySelector('.submitButton');
 
-const demoData = [
+const demoLibrary = [
 	{
 		title: 'It',
 		author: 'Stephen King',
@@ -30,17 +30,16 @@ const demoData = [
 	}
 ];
 
-const myLibrary = demoData;
+const populateLibrary = () => {
+	if (localStorage.length !== 0) {
+		localStorage.getItem('library');
+	}
+	else {
+		return demoLibrary;
+	}
+};
 
-// const currentLibrary = () => {
-// 	localStorage.getItem(library);
-// 	if (library.length === 0) {
-// 		return demoData;
-// 	}
-// 	else {
-// 		return localStorage.setItem(library);
-// 	}
-// };
+const myLibrary = populateLibrary();
 
 function Book(title, author, pages, complete, commentary) {
 	this.title = title;
