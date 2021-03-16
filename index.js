@@ -26,7 +26,7 @@ const demoLibrary = [
 		pages: 471,
 		complete: true,
 		commentary:
-			"I really don't recall reading this book, but from reading the summary online I'll likely have to again in the future.  It was for school, but I kept it because I remember enjoying it."
+			"I really don't recall reading this book, but from reading the summary online I'll likely have to again in the future.  It was for school and I kept it because I remember enjoying it."
 	}
 ];
 
@@ -90,8 +90,14 @@ function displayBookshelf() {
 		let deleteBook = document.createElement('button');
 		deleteBook.classList.add('deleteButton');
 		deleteBook.textContent = 'Delete';
+		deleteBook.addEventListener('click', () => {
+			// remove from DOM
+			bookShelf.removeChild(cover);
+			// remove from memory
+			myLibrary.splice(book.id, 1);
+		});
 
-		// assign unique id available upon display
+		// assign id available upon display based on index in array
 		book.id = myLibrary.indexOf(book);
 
 		bookShelf.appendChild(cover);
@@ -106,12 +112,10 @@ function displayBookshelf() {
 			bookCommentary,
 			deleteBook
 		);
-
-		deleteBook.addEventListener('click', () => {
-			myLibrary.filter();
-		});
 	});
 }
+
+function deleteEntry() {}
 
 function submitBook() {
 	newBookButton.classList.add('hidden');
@@ -135,16 +139,16 @@ function submitBook() {
 	commentary.type = 'textarea';
 	commentary.placeholder = 'comments / notes';
 
-	let checkboxDiv = document.createElement('div');
-	checkboxDiv.classList.add('checkbox');
+	// let checkboxDiv = document.createElement('div');
+	// checkboxDiv.classList.add('checkbox');
 
 	let checkboxPrompt = document.createElement('p');
 	checkboxPrompt.textContent = 'Completed?';
-	checkboxPrompt.classList.add('checkbox');
+	checkboxPrompt.classList.add('checkBox');
 
 	let complete = document.createElement('input');
 	complete.type = 'checkbox';
-	complete.classList.add('checkbox');
+	complete.classList.add('checkBox');
 
 	let submit = document.createElement('button');
 	submit.type = 'submit';
@@ -152,9 +156,17 @@ function submitBook() {
 
 	inputContainer.appendChild(newForm);
 
-	newForm.append(title, author, pages, commentary, checkboxDiv);
+	newForm.append(
+		title,
+		author,
+		pages,
+		checkboxPrompt,
+		complete,
+		submit,
+		commentary
+	);
 
-	checkboxDiv.append(checkboxPrompt, complete, submit);
+	// checkboxDiv.append(checkboxPrompt, complete, submit);
 
 	submit.addEventListener('click', () => {
 		addBook(

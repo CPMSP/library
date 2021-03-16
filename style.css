@@ -27,7 +27,7 @@ input {
 	width: 80%;
 }
 
-.checkbox {
+.checkBox {
 	display: flex;
 	flex-direction: column;
 	margin: .5rem auto;
