@@ -4,9 +4,15 @@
 	margin: 0 auto;
 }
 
-input {
-	margin-top: .25rem;
-	width: 100%;
+.submitButton {
+	width: 2rem;
+	text-align: center;
+	position: absolute;
+	right: 2rem;
+	top: 2rem;
+	background-color: green;
+	font-size: x-large;
+	border-radius: 50%;
 }
 
 .hidden {
@@ -14,7 +20,7 @@ input {
 }
 
 .addBookContainer {
-	height: 10rem;
+	/* height: 10rem; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -24,15 +30,21 @@ input {
 }
 
 .inputContainer {
+	display: flex;
+	flex-direction: column;
 	width: 80%;
 }
 
-.checkBox {
+input {
+	margin-top: .25rem;
+}
+
+.checkbox {
 	display: flex;
 	flex-direction: column;
 	margin: .5rem auto;
 	text-align: center;
-	width: 5rem;
+	/* width: 5rem; */
 }
 
 .bookShelf {

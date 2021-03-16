@@ -139,16 +139,16 @@ function submitBook() {
 	commentary.type = 'textarea';
 	commentary.placeholder = 'comments / notes';
 
-	// let checkboxDiv = document.createElement('div');
-	// checkboxDiv.classList.add('checkbox');
+	let checkboxDiv = document.createElement('div');
+	checkboxDiv.classList.add('checkbox');
 
 	let checkboxPrompt = document.createElement('p');
-	checkboxPrompt.textContent = 'Completed?';
-	checkboxPrompt.classList.add('checkBox');
+	checkboxPrompt.textContent = 'Check if Book is Completed';
+	checkboxPrompt.classList.add('checkbox');
 
 	let complete = document.createElement('input');
 	complete.type = 'checkbox';
-	complete.classList.add('checkBox');
+	complete.classList.add('checkbox');
 
 	let submit = document.createElement('button');
 	submit.type = 'submit';
@@ -156,17 +156,9 @@ function submitBook() {
 
 	inputContainer.appendChild(newForm);
 
-	newForm.append(
-		title,
-		author,
-		pages,
-		checkboxPrompt,
-		complete,
-		submit,
-		commentary
-	);
+	newForm.append(title, author, pages, commentary, checkboxDiv);
 
-	// checkboxDiv.append(checkboxPrompt, complete, submit);
+	checkboxDiv.append(checkboxPrompt, complete, submit);
 
 	submit.addEventListener('click', () => {
 		addBook(
