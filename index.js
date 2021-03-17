@@ -44,11 +44,15 @@ function Book(title, author, pages, complete, commentary) {
 	// };
 }
 
-function addBook(title, author, pages, complete, commentary) {
-	let newBook = new Book(title, author, pages, complete, commentary);
-	myLibrary.push(newBook);
-	displayBookshelf();
-}
+const populateBookshelf = () => {
+	let library = JSON.parse(localStorage.getItem('library'));
+	if (library !== null) {
+		myLibrary = library;
+	}
+	else {
+		myLibrary = demoLibrary;
+	}
+};
 
 function displayBookshelf() {
 	while (bookShelf.firstChild) {
@@ -118,6 +122,12 @@ function displayBookshelf() {
 	});
 }
 
+function addBook(title, author, pages, complete, commentary) {
+	let newBook = new Book(title, author, pages, complete, commentary);
+	myLibrary.push(newBook);
+	displayBookshelf();
+}
+
 function addBookToLibrary() {
 	newBookButton.classList.add('hidden');
 
@@ -172,6 +182,7 @@ function addBookToLibrary() {
 		newBookButton.classList.remove('hidden');
 		inputContainer.removeChild(newForm);
 	});
+	saveLibrary();
 	displayBookshelf();
 }
 
@@ -179,23 +190,6 @@ newBookButton.addEventListener('click', addBookToLibrary);
 
 const saveLibrary = () => {
 	localStorage.setItem('library', JSON.stringify(myLibrary));
-};
-
-// const deleteFromLibrary = () => {
-// 	let localLibrary = JSON.parse(localStorage.getItem('library'));
-// 	let currentLibrary = myLibrary;
-// 	console.log(localLibrary);
-// 	console.log(currentLibrary);
-// };
-
-const populateBookshelf = () => {
-	let library = JSON.parse(localStorage.getItem('library'));
-	if (library !== null) {
-		myLibrary = library;
-	}
-	else {
-		myLibrary = demoLibrary;
-	}
 };
 
 populateBookshelf();
