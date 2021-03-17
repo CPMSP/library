@@ -30,16 +30,7 @@ const demoLibrary = [
 	}
 ];
 
-const populateLibrary = () => {
-	if (localStorage.length !== 0) {
-		localStorage.getItem('library');
-	}
-	else {
-		return demoLibrary;
-	}
-};
-
-const myLibrary = populateLibrary();
+let myLibrary = [];
 
 function Book(title, author, pages, complete, commentary) {
 	this.title = title;
@@ -47,6 +38,10 @@ function Book(title, author, pages, complete, commentary) {
 	this.pages = pages;
 	this.complete = complete;
 	this.commentary = commentary;
+	// this.haveRead = function(complete) {
+	// 	return !Book.complete;
+	// 	console.log(Book.complete);
+	// };
 }
 
 function addBook(title, author, pages, complete, commentary) {
@@ -87,18 +82,24 @@ function displayBookshelf() {
 		let bookCommentary = document.createElement('p');
 		bookCommentary.textContent = book.commentary;
 
+		// assign id available upon display based on index in array
+		book.id = myLibrary.indexOf(book);
+
 		let deleteBook = document.createElement('button');
 		deleteBook.classList.add('deleteButton');
 		deleteBook.textContent = 'Delete';
 		deleteBook.addEventListener('click', () => {
 			// remove from DOM
 			bookShelf.removeChild(cover);
-			// remove from memory
+
+			// remove from localStorage
+			let localLibrary = JSON.parse(localStorage.getItem('library'));
+			localLibrary.splice(book.id, 1);
+			localStorage.setItem('library', JSON.stringify(localLibrary));
+
+			// remove from array
 			myLibrary.splice(book.id, 1);
 		});
-
-		// assign id available upon display based on index in array
-		book.id = myLibrary.indexOf(book);
 
 		bookShelf.appendChild(cover);
 
@@ -112,12 +113,12 @@ function displayBookshelf() {
 			bookCommentary,
 			deleteBook
 		);
+
+		saveLibrary();
 	});
 }
 
-function deleteEntry() {}
-
-function submitBook() {
+function addBookToLibrary() {
 	newBookButton.classList.add('hidden');
 
 	let newForm = document.createElement('div');
@@ -171,8 +172,31 @@ function submitBook() {
 		newBookButton.classList.remove('hidden');
 		inputContainer.removeChild(newForm);
 	});
+	displayBookshelf();
 }
 
-newBookButton.addEventListener('click', submitBook);
+newBookButton.addEventListener('click', addBookToLibrary);
 
+const saveLibrary = () => {
+	localStorage.setItem('library', JSON.stringify(myLibrary));
+};
+
+// const deleteFromLibrary = () => {
+// 	let localLibrary = JSON.parse(localStorage.getItem('library'));
+// 	let currentLibrary = myLibrary;
+// 	console.log(localLibrary);
+// 	console.log(currentLibrary);
+// };
+
+const populateBookshelf = () => {
+	let library = JSON.parse(localStorage.getItem('library'));
+	if (library !== null) {
+		myLibrary = library;
+	}
+	else {
+		myLibrary = demoLibrary;
+	}
+};
+
+populateBookshelf();
 displayBookshelf();

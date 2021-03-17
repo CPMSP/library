@@ -10,9 +10,11 @@
 	position: absolute;
 	right: 2rem;
 	top: 2rem;
-	background-color: green;
+	background-color: limegreen;
 	font-size: x-large;
 	border-radius: 50%;
+	color: white;
+	border: 1px solid white;
 }
 
 .hidden {
@@ -20,7 +22,6 @@
 }
 
 .addBookContainer {
-	/* height: 10rem; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
