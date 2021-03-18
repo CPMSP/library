@@ -123,9 +123,14 @@ function displayBookshelf() {
 }
 
 function addBook(title, author, pages, complete, commentary) {
-	let newBook = new Book(title, author, pages, complete, commentary);
-	myLibrary.push(newBook);
-	displayBookshelf();
+	if (!title || !author || !pages || !commentary) {
+		alert('Please fill in all text fields to add a book');
+	}
+	else {
+		let newBook = new Book(title, author, pages, complete, commentary);
+		myLibrary.push(newBook);
+		displayBookshelf();
+	}
 }
 
 function addBookToLibrary() {
