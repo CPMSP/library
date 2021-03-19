@@ -66,6 +66,7 @@ input {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
+	box-shadow: 5px 5px 5px 0 lightgray;
 }
 
 .deleteButton {

@@ -39,8 +39,8 @@ function Book(title, author, pages, complete, commentary) {
 	this.complete = complete;
 	this.commentary = commentary;
 	// this.haveRead = function(complete) {
-	// 	return !Book.complete;
 	// 	console.log(Book.complete);
+	// 	return !Book.complete;
 	// };
 }
 
@@ -76,9 +76,15 @@ function displayBookshelf() {
 
 		let bookComplete = document.createElement('input');
 		bookComplete.type = 'checkbox';
+		// checks checkbox if book is completed
 		book.complete === true
 			? (bookComplete.checked = true)
 			: (bookComplete.checked = false);
+		// toggles property congruently with checkbox and saves
+		bookComplete.addEventListener('click', () => {
+			book.complete = !book.complete;
+			saveLibrary();
+		});
 
 		let commentaryTag = document.createElement('p');
 		commentaryTag.textContent = 'Commentary:';
