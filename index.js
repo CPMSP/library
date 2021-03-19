@@ -1,7 +1,10 @@
 const bookShelf = document.querySelector('.bookShelf');
 
 const inputContainer = document.querySelector('.addBookContainer');
+
+const demoInfo = document.querySelector('.demoInfo');
 const newBookButton = document.querySelector('.submitButton');
+const clearAll = document.querySelector('.clearAll');
 
 const demoLibrary = [
 	{
@@ -38,10 +41,6 @@ function Book(title, author, pages, complete, commentary) {
 	this.pages = pages;
 	this.complete = complete;
 	this.commentary = commentary;
-	// this.haveRead = function(complete) {
-	// 	console.log(Book.complete);
-	// 	return !Book.complete;
-	// };
 }
 
 const populateBookshelf = () => {
@@ -55,6 +54,7 @@ const populateBookshelf = () => {
 };
 
 function displayBookshelf() {
+	// clear bookshelf
 	while (bookShelf.firstChild) {
 		bookShelf.removeChild(bookShelf.firstChild);
 	}
@@ -80,7 +80,7 @@ function displayBookshelf() {
 		book.complete === true
 			? (bookComplete.checked = true)
 			: (bookComplete.checked = false);
-		// toggles property congruently with checkbox and saves
+		// toggles property according to checkbox and saves
 		bookComplete.addEventListener('click', () => {
 			book.complete = !book.complete;
 			saveLibrary();
@@ -123,7 +123,6 @@ function displayBookshelf() {
 			bookCommentary,
 			deleteBook
 		);
-
 		saveLibrary();
 	});
 }
@@ -140,7 +139,9 @@ function addBook(title, author, pages, complete, commentary) {
 }
 
 function addBookToLibrary() {
+	demoInfo.classList.add('hidden');
 	newBookButton.classList.add('hidden');
+	clearAll.classList.add('hidden');
 
 	let newForm = document.createElement('div');
 	newForm.classList.add('inputContainer');
@@ -191,17 +192,29 @@ function addBookToLibrary() {
 			commentary.value
 		);
 		newBookButton.classList.remove('hidden');
+		demoInfo.classList.remove('hidden');
+		clearAll.classList.remove('hidden');
 		inputContainer.removeChild(newForm);
 	});
 	saveLibrary();
 	displayBookshelf();
 }
 
-newBookButton.addEventListener('click', addBookToLibrary);
-
 const saveLibrary = () => {
 	localStorage.setItem('library', JSON.stringify(myLibrary));
 };
+
+newBookButton.addEventListener('click', addBookToLibrary);
+
+demoInfo.addEventListener('click', () => {
+	myLibrary = demoLibrary;
+	displayBookshelf();
+});
+
+clearAll.addEventListener('click', () => {
+	myLibrary = [];
+	displayBookshelf();
+});
 
 populateBookshelf();
 displayBookshelf();
