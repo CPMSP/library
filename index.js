@@ -54,7 +54,7 @@ const populateBookshelf = () => {
 };
 
 function displayBookshelf() {
-	// clear bookshelf
+	// clear bookshelf before displaying any revisions
 	while (bookShelf.firstChild) {
 		bookShelf.removeChild(bookShelf.firstChild);
 	}
@@ -101,12 +101,10 @@ function displayBookshelf() {
 		deleteBook.addEventListener('click', () => {
 			// remove from DOM
 			bookShelf.removeChild(cover);
-
 			// remove from localStorage
 			let localLibrary = JSON.parse(localStorage.getItem('library'));
 			localLibrary.splice(book.id, 1);
 			localStorage.setItem('library', JSON.stringify(localLibrary));
-
 			// remove from array
 			myLibrary.splice(book.id, 1);
 		});
