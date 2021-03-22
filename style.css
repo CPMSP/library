@@ -11,7 +11,7 @@ body {
 .explainer {
 	width: 60%;
 	text-align: center;
-	margin: 2rem auto;
+	margin: 2rem auto 0 auto;
 	padding: 1rem;
 	border: 1px solid black;
 	border-radius: 1.5rem;
@@ -22,12 +22,24 @@ code {
 	background-color: lightgrey;
 }
 
+.addBookContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 80%;
+	margin: auto;
+	padding: 2rem;
+}
+
+.libraryButtons {
+	width: 80%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
 .submitButton {
 	width: 2rem;
 	text-align: center;
-	position: absolute;
-	right: 1rem;
-	top: 4rem;
 	background-color: limegreen;
 	font-size: x-large;
 	border-radius: 50%;
@@ -38,9 +50,6 @@ code {
 .demoInfo {
 	width: 2rem;
 	text-align: center;
-	position: absolute;
-	right: 1rem;
-	top: 7rem;
 	background-color: yellow;
 	font-size: x-large;
 	border-radius: 50%;
@@ -51,9 +60,6 @@ code {
 .clearAll {
 	width: 2rem;
 	text-align: center;
-	position: absolute;
-	right: 1rem;
-	top: 10rem;
 	background-color: red;
 	font-size: x-large;
 	border-radius: 50%;
@@ -63,15 +69,6 @@ code {
 
 .hidden {
 	visibility: hidden;
-}
-
-.addBookContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 80%;
-	margin: auto;
-	padding: 2rem;
 }
 
 .inputContainer {
@@ -87,7 +84,7 @@ input {
 .checkbox {
 	display: flex;
 	flex-direction: column;
-	margin: .5rem auto;
+	margin: .25rem auto;
 	text-align: center;
 }
 
