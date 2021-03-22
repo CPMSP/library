@@ -18,6 +18,10 @@ body {
 	background-color: #fafafa;
 }
 
+code {
+	background-color: lightgrey;
+}
+
 .submitButton {
 	width: 2rem;
 	text-align: center;
